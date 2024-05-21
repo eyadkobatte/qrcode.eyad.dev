@@ -11,6 +11,7 @@ export default function Home() {
       <Input
         className="text-black w-64 h-10 mb-12 border-4 dark:bg-black border-black dark:border-white dark:text-white px-4 py-8"
         value={text}
+        onFocus={(e) => e.target.setSelectionRange(0, text.length, "forward")}
         onChange={(e) => setText(e.target.value)}
       ></Input>
 
