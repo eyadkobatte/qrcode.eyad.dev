@@ -1,6 +1,7 @@
 import QRCode from "qrcode";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { track } from "@vercel/analytics";
 
 type Props = {
   text: string;
@@ -11,9 +12,10 @@ export default function QRCodeComponent({ text }: Props) {
   useEffect(() => {
     const getQrCode = async () => {
       if (text.length > 0) {
-        console.time("QR");
+        const start = performance.now();
         const result = await QRCode.toDataURL(text, { margin: 0, scale: 10 });
-        console.timeEnd("QR");
+        const end = performance.now();
+        track("QrCode_Generation", { time: end - start });
         setCode(result);
       } else {
         setCode("");

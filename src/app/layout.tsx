@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "QR Code Generator",
@@ -17,6 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${GeistSans.className} ${GeistMono.className}`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
